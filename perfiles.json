@@ -1,4 +1,6 @@
 {
   "titulo": "Perfiles",
-  "perfiles": ["ejemplo", "perfil-uno", "perfil-dos"]
+  "perfiles": [
+    "sta-teresa-de-avila"
+  ]
 }
