@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Perfil</title>
+<style>
+:root{
+  --bg:#ffffff; --surface:#f4f5f7; --text:#1b1d21; --muted:#5d6370; --line:#dfe2e7; --accent:#2f5fd0;
+  --font:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --bg:#101114; --surface:#1d1f24; --text:#f1f2f4; --muted:#a3a9b5; --line:#2c2f36; --accent:#7fa3ff; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.5}
+#app{max-width:470px;margin:0 auto;min-height:100vh;border-left:1px solid var(--line);border-right:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0)}
+@media (max-width:470px){#app{border:0}}
+
+.perfil{display:flex;align-items:center;gap:20px;padding:24px 16px 20px}
+.perfil h1{margin:0;font-size:1.25rem;line-height:1.25;overflow-wrap:anywhere}
+.perfil p{margin:4px 0 0;color:var(--muted);font-size:.95rem;overflow-wrap:anywhere}
+.perfil p.usuario{color:var(--text);font-weight:600}
+.avatar{border-radius:50%;object-fit:cover;background:var(--surface);flex:none;display:block}
+.avatar.grande{width:86px;height:86px}
+.avatar.mini{width:34px;height:34px}
+.avatar-vacio{display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--muted);border:1px solid var(--line)}
+.avatar-vacio.grande{font-size:2rem}
+.avatar-vacio.mini{font-size:.95rem}
+
+.pestana{display:flex;justify-content:center;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);color:var(--text)}
+.pestana svg{width:24px;height:24px}
+
+.post{border-bottom:1px solid var(--line);padding-bottom:8px}
+.post-cab{display:flex;align-items:center;gap:10px;padding:10px 12px;min-height:52px}
+.post-cab strong{font-size:.95rem;overflow-wrap:anywhere}
+.foto{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:var(--surface)}
+.sin-foto{width:100%;aspect-ratio:1/1;background:var(--surface);display:flex;align-items:center;justify-content:center;padding:24px;text-align:center;color:var(--muted);overflow:hidden}
+.sin-foto span{display:-webkit-box;-webkit-line-clamp:10;-webkit-box-orient:vertical;overflow:hidden;white-space:pre-wrap;overflow-wrap:anywhere}
+.pie{margin:0;padding:12px 16px 8px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:1rem}
+
+.mensaje{margin:48px 16px;padding:24px;border:1px solid var(--line);border-radius:12px;background:var(--surface);text-align:center}
+.mensaje h2{margin:0 0 8px;font-size:1.15rem}
+.mensaje p{margin:0;color:var(--muted)}
+.cargando{padding:48px 16px;text-align:center;color:var(--muted)}
+.vacio{padding:32px 16px;text-align:center;color:var(--muted)}
+
+.volver{display:flex;align-items:center;gap:4px;min-height:48px;padding:0 16px 0 8px;color:var(--text);text-decoration:none;font-weight:600;border-bottom:1px solid var(--line)}
+.volver svg{width:24px;height:24px}
+.volver:hover{background:var(--surface)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:-3px;border-radius:4px}
+.inicio h1{margin:0;padding:20px 16px 12px;font-size:1.25rem;line-height:1.25}
+.lista{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.lista li{border-bottom:1px solid var(--line)}
+.fila{display:flex;align-items:center;gap:14px;min-height:72px;padding:8px 16px;color:var(--text);text-decoration:none}
+.fila:hover{background:var(--surface)}
+.fila .datos{flex:1;min-width:0}
+.fila .datos b{display:block;overflow-wrap:anywhere}
+.fila .datos small{display:block;color:var(--muted);font-size:.9rem;overflow-wrap:anywhere}
+.fila .flecha{width:20px;height:20px;flex:none;color:var(--muted)}
+.avatar.medio{width:56px;height:56px}
+.avatar-vacio.medio{font-size:1.4rem}
+</style>
+</head>
+<body>
+<main id="app" aria-live="polite">
+  <p class="cargando">Cargando perfil…</p>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var app = document.getElementById("app");
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text !== undefined) n.textContent = text;
+    return n;
+  }
+
+  function mostrarError(titulo, detalle) {
+    app.textContent = "";
+    var caja = el("div", "mensaje");
+    caja.setAttribute("role", "alert");
+    caja.appendChild(el("h2", null, titulo));
+    caja.appendChild(el("p", null, detalle));
+    app.appendChild(caja);
+    document.title = "Perfil no disponible";
+  }
+
+  // Solo se aceptan rutas relativas dentro del repositorio (nada externo).
+  function rutaSegura(r) {
+    return typeof r === "string" && r.trim() !== "" &&
+      !/^[a-z][a-z0-9+.-]*:/i.test(r) && r.indexOf("//") !== 0 &&
+      r.indexOf("..") === -1 && r.indexOf("\\") === -1;
+  }
+
+  function textoValido(t) { return typeof t === "string" && t.trim() !== ""; }
+
+  function validar(d) {
+    if (!d || typeof d !== "object") return false;
+    if (!textoValido(d.nombre) || !textoValido(d.fotoPerfil) || !Array.isArray(d.publicaciones)) return false;
+    if (d.usuario !== undefined && typeof d.usuario !== "string") return false;
+    return d.publicaciones.every(function (p) {
+      return p && typeof p === "object" && textoValido(p.foto) && textoValido(p.texto) &&
+        (p.alt === undefined || typeof p.alt === "string");
+    });
+  }
+
+  // Nombre de usuario opcional; admite que venga escrito con o sin "@".
+  function usuario(d) {
+    if (typeof d.usuario !== "string") return "";
+    var u = d.usuario.trim().replace(/^@+/, "");
+    return u ? "@" + u : "";
+  }
+
+  function avatar(d, tam) {
+    function vacio() {
+      var v = el("div", "avatar avatar-vacio " + tam, d.nombre.trim().charAt(0).toUpperCase());
+      v.setAttribute("aria-hidden", "true");
+      return v;
+    }
+    if (!rutaSegura(d.fotoPerfil)) return vacio();
+    var img = el("img", "avatar " + tam);
+    img.alt = "Foto de perfil de " + d.nombre;
+    img.loading = "lazy";
+    img.decoding = "async";
+    img.onerror = function () { img.replaceWith(vacio()); };
+    img.src = d.fotoPerfil;
+    return img;
+  }
+
+  function foto(p) {
+    function marcador() {
+      var b = el("div", "sin-foto");
+      b.setAttribute("role", "img");
+      b.setAttribute("aria-label", p.alt && p.alt.trim() ? p.alt : p.texto);
+      b.appendChild(el("span", null, p.texto));
+      return b;
+    }
+    if (!rutaSegura(p.foto)) return marcador();
+    var img = el("img", "foto");
+    img.alt = p.alt && p.alt.trim() ? p.alt : p.texto;
+    img.loading = "lazy";
+    img.decoding = "async";
+    img.onerror = function () { img.replaceWith(marcador()); };
+    img.src = p.foto;
+    return img;
+  }
+
+  var ICONO_VOLVER = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>';
+  var ICONO_FLECHA = '<svg class="flecha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>';
+  var ID_VALIDO = /^[a-z0-9-]+$/;
+
+  function dibujar(d, conVolver) {
+    app.textContent = "";
+    document.title = d.nombre;
+
+    if (conVolver) {
+      var v = el("a", "volver");
+      v.href = "./";
+      v.innerHTML = ICONO_VOLVER;
+      v.appendChild(document.createTextNode("Perfiles"));
+      app.appendChild(v);
+    }
+
+    var cab = el("header", "perfil");
+    cab.appendChild(avatar(d, "grande"));
+    var info = el("div");
+    info.appendChild(el("h1", null, d.nombre));
+    if (usuario(d)) info.appendChild(el("p", "usuario", usuario(d)));
+    var n = d.publicaciones.length;
+    info.appendChild(el("p", null, n + (n === 1 ? " publicación" : " publicaciones")));
+    cab.appendChild(info);
+    app.appendChild(cab);
+
+    var pest = el("div", "pestana");
+    pest.setAttribute("role", "img");
+    pest.setAttribute("aria-label", "Publicaciones");
+    pest.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5"/><rect x="13.5" y="3" width="7.5" height="7.5"/><rect x="3" y="13.5" width="7.5" height="7.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5"/></svg>';
+    app.appendChild(pest);
+
+    if (n === 0) { app.appendChild(el("p", "vacio", "Este perfil todavía no tiene publicaciones.")); return; }
+
+    d.publicaciones.forEach(function (p) {
+      var art = el("article", "post");
+      var h = el("div", "post-cab");
+      h.appendChild(avatar(d, "mini"));
+      h.appendChild(el("strong", null, usuario(d) || d.nombre));
+      art.appendChild(h);
+      art.appendChild(foto(p));
+      art.appendChild(el("p", "pie", p.texto));
+      app.appendChild(art);
+    });
+  }
+
+  function dibujarLista(titulo, items) {
+    app.textContent = "";
+    document.title = titulo;
+    var cont = el("div", "inicio");
+    cont.appendChild(el("h1", null, titulo));
+    if (items.length === 0) {
+      cont.appendChild(el("p", "vacio", "Todavía no hay perfiles disponibles."));
+      app.appendChild(cont);
+      return;
+    }
+    var nav = el("nav");
+    nav.setAttribute("aria-label", "Lista de perfiles");
+    var ul = el("ul", "lista");
+    items.forEach(function (it) {
+      var li = el("li");
+      var a = el("a", "fila");
+      a.href = "?santo=" + it.id;
+      a.appendChild(avatar(it.d, "medio"));
+      var datos = el("div", "datos");
+      datos.appendChild(el("b", null, it.d.nombre));
+      if (usuario(it.d)) datos.appendChild(el("small", null, usuario(it.d)));
+      a.appendChild(datos);
+      a.insertAdjacentHTML("beforeend", ICONO_FLECHA);
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+    nav.appendChild(ul);
+    cont.appendChild(nav);
+    app.appendChild(cont);
+  }
+
+  function cargarJSON(ruta) {
+    return fetch(ruta).then(function (r) {
+      if (r.status === 404) throw new Error("404");
+      if (!r.ok) throw new Error("http");
+      return r.json();
+    });
+  }
+
+  function manejarError(e) {
+    var m = e && e.message;
+    if (m === "404") {
+      mostrarError("Perfil no encontrado", "No existe ningún perfil con ese enlace. Revisa que esté bien escrito.");
+    } else if (m === "formato") {
+      mostrarError("No se ha podido cargar el perfil", "El archivo de datos está incompleto o mal formado.");
+    } else {
+      mostrarError("No se ha podido cargar el perfil", "Comprueba tu conexión e inténtalo de nuevo.");
+    }
+  }
+
+  function validarLista(l) {
+    return l && typeof l === "object" && Array.isArray(l.perfiles) &&
+      (l.titulo === undefined || typeof l.titulo === "string") &&
+      l.perfiles.every(function (id) { return typeof id === "string" && ID_VALIDO.test(id); });
+  }
+
+  function cargarInicio() {
+    return cargarJSON("perfiles.json").then(function (l) {
+      if (!validarLista(l)) throw new Error("formato");
+      var titulo = l.titulo && l.titulo.trim() ? l.titulo : "Perfiles";
+      return Promise.all(l.perfiles.map(function (id) {
+        return cargarJSON("datos/" + id + ".json")
+          .then(function (d) { return validar(d) ? { id: id, d: d } : null; })
+          .catch(function () { return null; });
+      })).then(function (items) {
+        dibujarLista(titulo, items.filter(Boolean));
+      });
+    }, function (e) {
+      // Sin perfiles.json: se muestra data.json como perfil único.
+      if (e && e.message === "404") {
+        return cargarJSON("data.json").then(function (d) {
+          if (!validar(d)) throw new Error("formato");
+          dibujar(d, false);
+        });
+      }
+      throw e;
+    });
+  }
+
+  var santo = new URLSearchParams(window.location.search).get("santo");
+
+  if (santo !== null) {
+    if (!ID_VALIDO.test(santo)) {
+      mostrarError("Enlace no válido", "El identificador del perfil solo puede contener letras minúsculas, números y guiones.");
+      return;
+    }
+    cargarJSON("datos/" + santo + ".json")
+      .then(function (d) {
+        if (!validar(d)) throw new Error("formato");
+        dibujar(d, true);
+      })
+      .catch(manejarError);
+  } else {
+    cargarInicio().catch(manejarError);
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "nombre": "Perfil de ejemplo dos",
+  "fotoPerfil": "img/ejemplo/perfil.svg",
+  "publicaciones": [
+    { "foto": "img/ejemplo/2.svg", "texto": "Texto de ejemplo de la única publicación de este perfil." }
+  ]
+}

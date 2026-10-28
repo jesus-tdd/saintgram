@@ -1,0 +1,7 @@
+{
+  "nombre": "Perfil de prueba",
+  "fotoPerfil": "img/ejemplo/perfil.svg",
+  "publicaciones": [
+    { "foto": "img/ejemplo/1.svg", "texto": "Texto de ejemplo para la página principal. Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "alt": "Recuadro gris de ejemplo con el número 1" }
+  ]
+}
