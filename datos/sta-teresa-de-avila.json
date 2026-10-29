@@ -5,7 +5,12 @@
   "publicaciones": [
     {
       "foto": "img/sta-teresa-avila/leyendo.jpg",
-      "texto": "Según cuenta en su biografía, a Santa Teresa de Jesús le apasionaba leer novelas de caballería y vidas de otros santos. Le gustaba tanto leer que, con unos 13 años, quería escaparse a \"tierras de moros\" para convertirse en mártir.\n\nPor obvias razones su familia se opuso a eso.\n\n(La foto no es de Santa Teresa)."
+      "texto": "Según cuenta en su biografía, a Santa Teresa de Jesús le apasionaba leer novelas de caballería y vidas de otros santos. Le gustaba tanto leer que, con unos 13 años, quería escaparse con u hermano a \"tierras de moros\" para convertirse en mártir.\n\nPor obvias razones su familia se opuso a eso.\n\n(La foto no es de Santa Teresa)."
+    },
+    
+    {
+      "foto": "img/ejemplo/1.svg",
+      "texto": "Contra la voluntad de su padre, Santa Teresa huyó de casa al convento de la Encarnación para hacerse Carmelita."
     }
   ]
 }
