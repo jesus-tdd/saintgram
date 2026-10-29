@@ -9,8 +9,18 @@
     },
     
     {
-      "foto": "img/ejemplo/1.svg",
+      "foto": "img/sta-teresa-avila/convento.webp",
       "texto": "Contra la voluntad de su padre, Santa Teresa huyó de casa al convento de la Encarnación para hacerse Carmelita."
+    },
+
+    {
+      "foto": "img/sta-teresa-avila/mapa.jpeg",
+      "texto": "Durante toda su vida, Santa Teresa de Jesús fue atacada por numerosas enfermedades, pero eso no la impidió crecer en su vida de fe.\n\nSanta Teresa tuvo parte en una reforma de la orden de las Carmelitas. También fundó varios conventos en distintas partes de España."
+    },
+
+    {
+      "foto": "img/sta-teresa-avila/pfp.jpg",
+      "texto": "Como la buena lectora que fue, Santa Teresa dejó bastantes obras escritas, tanto en prosa como en verso. Habló de la vida espiritual y mística, pero con un registro coloquial y con expresiones del habla popular de su época.\n\n«Vivo sin vivir en mí,\ny tan alta vida espero,\nque muero porque no muero.»"
     }
   ]
 }
