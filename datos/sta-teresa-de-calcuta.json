@@ -4,8 +4,16 @@
   "fotoPerfil": "img/sta-teresa-calcuta/pfp.webp",
   "publicaciones": [
     {
-      "foto": "img/sta-teresa-calcuta/a.jpg",
-      "texto": "."
+      "foto": "img/sta-teresa-calcuta/dibujo.jpeg",
+      "texto": "La Madre Teresa de Calcuta vivió en el siglo XX.\n\nNació en una familia católica. La religiosidad de su madre la hizo querer ser misionera ya a los 12 años.\n\nFue misonera, monja católica y es santa."
+    },
+    {
+      "foto": "img/sta-teresa-calcuta/hermanas.jpg",
+      "texto": "Fundó la orden de las misioneras de la caridad en 1950 (en Calcuta, la India). Abrió comedores, orfanatos, hospitales para leprosos y centros para personas con enfermedades terminales. Ayudaba a todos, sin importar su religión."
+    },
+    {
+      "foto": "img/sta-teresa-calcuta/frase.jpeg",
+      "texto": "Recibió el Premio Nobel de la Paz en 1979 por su labor en la superación de la pobreza y la miseria.\n\nFalleció en 1997, y fue declarada santa en 2016 por el Papa Francisco."
     }
   ]
 }
