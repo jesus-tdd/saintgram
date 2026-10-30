@@ -1,0 +1,27 @@
+{
+  "nombre": "San Carlo Acutis",
+  "usuario": "@c.acutis",
+  "fotoPerfil": "img/carlo-acutis/pfp.jpeg",
+  "publicaciones": [
+    {
+      "foto": "img/carlo-acutis/blessed.webp",
+      "texto": "San Carlo Acutis fue un joven italiano.\n\nLe gustaban los videojuegos, aunque se autoimpuso jugar únicamente una hora a la semana. También le gustaba el fútbol.\n\n A pesar de que su familia no era especialmente religiosa, iba a Misa diariamente desde los 7 años (tras recibir su primera Comunión).\n\nSus dos padres trabajaban, por lo que de muy pequeño lo cuidaron solamente niñeras."
+    },
+
+    {
+      "foto": "img/carlo-acutis/splash_inglese.png",
+      "texto": "A San Carlo Acutis le apasionaba la programación.\n\nA los 11 años comenzó a crear una web sobre milagros eucarísticos. Aún se puede visitar en www.miracolieucaristici.org.\n\n También hizo páginas web para su colegio y su parroquia."
+    },
+
+    {
+        "foto": "img/carlo-acutis/solidaridad.jpeg",
+        "texto": "En su vida personal, protegía a compañeros de clase frente al bullying, y ayudó a un amigo a afrontar el divorcio de sus padres.\n\nTambién ayudaba a personas sin hogar con dinero de su bolsillo, y cuidaba de la naturaleza (sobre todo de los animales)."
+    },
+
+    {
+        "foto": "img/carlo-acutis/saint.webp",
+        "texto": "San Carlo Acutis falleció en 2006, poco tiempo después de que le diagnosticaran leucemia. La enfermedad le causaba mucho sufrimiento, pero cuando le preguntaban él respondía que había gente sufriendo mucho más que él.\n\nEs santo desde 2025 y es el primer santo millenial."
+
+    }
+  ]
+}
