@@ -1,0 +1,11 @@
+{
+  "nombre": "Santa Teresa de Calcuta",
+  "usuario": "@mother._teresa",
+  "fotoPerfil": "img/sta-teresa-calcuta/pfp.webp",
+  "publicaciones": [
+    {
+      "foto": "img/sta-teresa-calcuta/a.jpg",
+      "texto": "."
+    }
+  ]
+}
