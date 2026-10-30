@@ -1,0 +1,19 @@
+{
+  "nombre": "San Agustín de Hipona",
+  "usuario": "@aagustinus",
+  "fotoPerfil": "img/san-agustin/pfp.png",
+  "publicaciones": [
+    {
+      "foto": "img/san-agustin/san-agustin-sta-monica.jpeg",
+      "texto": "San Agustín de Hipona (354–430) nació en Tagaste, en el norte de África. Durante su infancia, era irascible y soberbio. Le costaba el griego y prefería jugar a estudiar.\n\nSan Agustín vivió su juventud de forma desordenada, llegando incluso a cometer algunos robos. También pasó por distintas religiones y corrientes de pensamiento.\n\nSu madre, santa Mónica,  rezaba por su conversión, a pesar de que él se alejaba cada vez más."
+    },
+    {
+       "foto": "img/san-agustin/bautismo.jpg",
+       "texto": "La conversión de san Agustín al cristianismo ocurrió en Milán. En ese entonces, él ya estaba planteándose sus creencias. Los sermones de san Ambrosio (arzobispo de Milán) fueron decisivos para él. Cuenta que, al oírlos, quedaba «maravillado, sin aliento, con el corazón ardiendo».\n\nFue el propio san Ambrosio quien bautizó a san Agustín. "
+    },
+    {
+      "foto": "img/san-agustin/cuadro.jpeg",
+      "texto": "Finalmente, san Agustín fue obispo de Hipona, ciudad situada en la antigua Argelia, además de filósofo, teólogo. En la actualidad, es considerado uno de los pensadores más influyentes de la Iglesia."
+    }
+  ]
+}
