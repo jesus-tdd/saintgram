@@ -1,0 +1,19 @@
+{
+  "nombre": "San Vicente de Paúl",
+  "usuario": "@vincentdepaul",
+  "fotoPerfil": "img/san-vicente-de-paul/pfp.webp",
+  "publicaciones": [
+    {
+      "foto": "img/san-vicente-de-paul/cuadro.jpg",
+      "texto": "San Vicente de Paúl vivió en los siglos XVI y XVII.\n\nNació en Francia, en una familia humilde de campesinos. De niño le tocaba cuidar el ganado.\n\nNo se hizo sacerdote por vocación, sino para conseguir un trabajo cómodo, ganar dinero y retirar a sus padres del campo."
+    },
+    {
+      "foto": "img/san-vicente-de-paul/frase.jpeg",
+      "texto": "A los 24 años fue secuestrado por piratas y vendido como esclavo en Túnez. Tras dos años de cautiverio, logró escapar y regresar a Francia. Esto le marcó y, cuando volvió a Francia, dejó atrás su egoísmo para dedicarse por completo a los marginados.\n\nEntendió que para ayudar no bastaba con dar limosna, sino que hacía falta organización. Fundó las primeras redes de voluntariado y comedores sociales de la historia."
+    },
+    {
+      "foto": "img/san-vicente-de-paul/dream-team.jpeg",
+      "texto": "Junto a Santa Luisa de Marillac, creó a las Hijas de la Caridad, las primeras monjas que no vivían encerradas en conventos, sino que salían a las calles y hospitales a curar a los enfermos."
+    }
+  ]
+}
