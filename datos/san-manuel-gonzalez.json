@@ -1,0 +1,24 @@
+{
+  "nombre": "San Manuel González",
+  "usuario": "@manuel.glz",
+  "fotoPerfil": "img/san-manuel/pfp.jpeg",
+  "publicaciones": [
+    {
+      "foto": "img/san-manuel/seises.jpg",
+      "texto": "Manuel González nació en Sevilla en 1877, en una familia humilde, y era el cuarto de cinco hermanos. Antes de cumplir diez años ya era uno de los «seises» de la catedral, los niños de coro que bailan y cantan ante el Sagrario. Era alegre por naturaleza y animaba los recreos y las salidas del seminario. A los doce años ya escribía que, si naciera mil veces, mil veces sería sacerdote."
+    },
+    {
+      "foto": "img/san-manuel/palomares.jpeg",
+      "texto": "En 1902, el joven sacerdote fue a predicar una misión a Palomares del Río (Sevilla). Se encontró una iglesia completamente abandonada, con polvo, suciedad y telarañas hasta dentro del sagrario. Él mismo contó que le costó no salir corriendo a su casa, pero se quedó allí arrodillado. Aquella experiencia fue el punto de partida para entender todo su ministerio. Desde entonces trabajó para acercar a las personas a la Eucaristía."
+    },
+    {
+      "foto": "img/san-manuel/revista.jpg",
+      "texto": "San Manuel González también fue periodista. Colaboró en un periódico católico con el seudónimo «Gonzalo de Sevilla», fundó la revista El Granito de Arena y escribió numerosos libros. Fue consagrado obispo en enero de 1916 y trabajó en Málaga casi veinte años. Allí se dedicó a reanimar las escuelas y el catecismo de las parroquias. También cuidó de los niños y de los necesitados: para inaugurar su seminario, él mismo y las autoridades sirvieron la mesa a unos tres mil niños. En 1921 fundó, junto a su hermana, las Misioneras Eucarísticas de Nazaret."
+    },
+    {
+      "foto": "img/san-manuel/lantern.webp",
+      "texto": "No todo le resultó fácil. De seminarista tenía que hacer rondas nocturnas por pasillos vacíos con un farolillo, y años después reconoció que le resultaba muy penoso, y padeció dolores de cabeza toda su vida. En 1931 grupos anticlericales incendiaron el palacio episcopal de Málaga. Se perdieron los archivos y tesoros que contenía, y tuvo que abandonar la ciudad. No volvió nunca a Málaga. En 1935 fue nombrado obispo de Palencia, donde visitó las parroquias de punta a punta. Murió en 1940. Fue canonizado en 2016 por el papa Francisco."
+    }
+
+  ]
+}
